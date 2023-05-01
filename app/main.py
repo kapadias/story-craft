@@ -1,7 +1,6 @@
 import streamlit as st
 from services.story_craft.service import generate_user_story
 
-
 def run():
     st.title("StoryCraft")
 

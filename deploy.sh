@@ -12,10 +12,8 @@ docker push $CONTAINER_REGISTRY_IMAGE
 docker rmi $CONTAINER_REGISTRY_IMAGE
 
 # Deploy the image to Google Cloud Run with the specified configuration
-gcloud beta run deploy cr-personal-streamlit-na-story-craft \
+gcloud run deploy cr-personal-streamlit-na-story-craft \
   --allow-unauthenticated \
   --image=$CONTAINER_REGISTRY_IMAGE \
   --region=us-east1 \
-  --execution-environment=gen2 \
-  --platform=managed \
-  --port=8080
+  --platform=managed

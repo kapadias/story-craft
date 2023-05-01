@@ -1,5 +1,5 @@
 # Start from a Python 3.9 slim image
-FROM python:3.9-slim
+FROM --platform=linux/amd64 python:3.9.16-slim
 
 # Update the package repository and install GCC
 RUN apt-get update && apt-get install -y \
@@ -23,8 +23,8 @@ RUN pip install poetry \
     && poetry config virtualenvs.create false \
     && poetry install --no-dev --no-root
 
-# Expose port 8080
+# Expose the port that Streamlit listens on
 EXPOSE 8080
 
-# Set the entrypoint command to run 'main.py'
-CMD ["streamlit", "run", "--server.port", "8080", "./app/main.py"]
+# Run Streamlit when the container launches
+ENTRYPOINT ["streamlit", "run", "./app/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
