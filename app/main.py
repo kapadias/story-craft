@@ -1,6 +1,7 @@
 import streamlit as st
 from services.story_craft.service import generate_user_story
 
+
 def run():
     st.title("StoryCraft")
     st.write(
@@ -21,10 +22,24 @@ def run():
         )
 
     # Collect user inputs
-    persona = st.text_input("Persona (Mandatory):", value="", help="Enter the user role or type.")
-    scope = st.text_input("Scope (Mandatory):", value="", help="Enter the feature or functionality the user wants.")
-    title = st.text_input("Title (Optional):", value="", help="Enter a title for the user story (optional).")
-    acceptance_criteria = st.text_input("Acceptance Criteria (Optional):", value="", help="Enter the criteria for accepting the user story (optional).")
+    persona = st.text_input(
+        "Persona (Mandatory):", value="", help="Enter the user role or type."
+    )
+    scope = st.text_input(
+        "Scope (Mandatory):",
+        value="",
+        help="Enter the feature or functionality the user wants.",
+    )
+    title = st.text_input(
+        "Title (Optional):",
+        value="",
+        help="Enter a title for the user story (optional).",
+    )
+    acceptance_criteria = st.text_input(
+        "Acceptance Criteria (Optional):",
+        value="",
+        help="Enter the criteria for accepting the user story (optional).",
+    )
 
     # Generate the user story when the button is clicked
     if st.button("Generate User Story"):
@@ -37,6 +52,7 @@ def run():
         st.write(
             "Provide the necessary input and click the 'Generate User Story' button."
         )
+
 
 if __name__ == "__main__":
     run()

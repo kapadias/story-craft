@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "df-beantown-svc-template"
+name = "story-craft"
 version = "0.1.0"
 description = ""
-authors = ["Shashank Kapadia <shashank.kapadia@randstadusa.com>"]
+authors = ["Shashank Kapadia <smhkapadia@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
