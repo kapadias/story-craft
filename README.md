@@ -4,7 +4,7 @@ StoryCraft is a sophisticated web application designed to generate high-quality 
 additional input. Utilizing OpenAI's GPT-3.5 language model, StoryCraft presents user stories in an 
 interactive chat-based format.
 
-Endpoint: https://cr-personal-streamlit-na-story-craft-5n6fqn7d2a-ue.a.run.app
+Endpoint: [StoryCraft App](https://cr-personal-streamlit-na-story-craft-5n6fqn7d2a-ue.a.run.app)
 
 ## Getting Started
 
@@ -14,7 +14,7 @@ To begin using the StoryCraft application, follow the steps outlined below:
 2. Install [Poetry](https://python-poetry.org/docs/#installation) on your local machine if not already present.
 3. Navigate to the root directory of the project and execute `poetry install` to install the required dependencies.
 4. Set your OpenAI API key as a streamlit secret with the name `OPENAI_API_KEY`.
-5. Run `poetry run streamlit run app.py` to initiate the application.
+5. Run `poetry run streamlit run ./app/main.py` to initiate the application.
 6. Access the application by opening the URL displayed in the console.
 
 ## Usage
