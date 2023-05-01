@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "df-beantown-svc-template"
+version = "0.1.0"
+description = ""
+authors = ["Shashank Kapadia <shashank.kapadia@randstadusa.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.9.7 || >3.9.7,<3.10"
+streamlit = "^1.22.0"
+openai = "^0.27.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
