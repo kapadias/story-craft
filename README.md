@@ -4,6 +4,8 @@ StoryCraft is a sophisticated web application designed to generate high-quality 
 additional input. Utilizing OpenAI's GPT-3.5 language model, StoryCraft presents user stories in an 
 interactive chat-based format.
 
+Endpoint: https://cr-personal-streamlit-na-story-craft-5n6fqn7d2a-ue.a.run.app
+
 ## Getting Started
 
 To begin using the StoryCraft application, follow the steps outlined below:

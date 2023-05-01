@@ -1,6 +1,5 @@
 import streamlit as st
 import openai
-import os
 
 # Replace with your OpenAI API key, or set it as an environment variable in your deployment settings
 openai.api_key = st.secrets["OPENAI_API_KEY"]
