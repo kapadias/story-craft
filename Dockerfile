@@ -33,4 +33,4 @@ EXPOSE 8080
 # Set the container's entry point to run Streamlit with the specified options:
 # 1. Run the main.py script located in /app.
 # 2. Bind the server to port 8080 and listen on all interfaces (0.0.0.0).
-ENTRYPOINT ["streamlit", "run", "/app/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "./app/main.py", "--server.port=8080", "--server.address=0.0.0.0"]
