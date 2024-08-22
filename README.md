@@ -1,7 +1,7 @@
 # StoryCraft - Professional User Story Generator
 
 StoryCraft is a sophisticated web application designed to generate high-quality user stories based on user prompts and 
-additional input. Utilizing OpenAI's GPT-3.5 language model, StoryCraft presents user stories in an 
+additional input. Utilizing OpenAI's GPT-4 language model, StoryCraft presents user stories in an 
 interactive chat-based format.
 
 Endpoint: [StoryCraft App](https://cr-personal-streamlit-na-story-craft-5n6fqn7d2a-ue.a.run.app)

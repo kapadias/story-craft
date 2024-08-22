@@ -1,7 +1,7 @@
 import streamlit as st
 import openai
 
-# Replace with your OpenAI API key, or set it as an environment variable in your deployment settings
+# Ensure the OpenAI API key is securely accessed from environment variables
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 
@@ -9,30 +9,35 @@ def generate_user_story(
     persona: str, scope: str, title: str, acceptance_criteria: str
 ) -> None:
     """
-    The function constructs a chat-based input prompt for the OpenAI API with the given persona, scope, title, and
-    acceptance criteria. It then calls the OpenAI API to generate the user story using GPT-3's Davinci engine.
+    Generates a user story using the GPT-4 model based on the provided persona, scope, title, and acceptance criteria.
     The generated user story is displayed in a chat-based format using Streamlit.
 
     Args:
-        persona (str): A string representing the user persona.
-        scope (str): A string representing the scope of the user story.
-        title (str): A string representing the title of the user story.
-        acceptance_criteria (str): A string representing the acceptance criteria of the user story.
+        persona (str): The user persona.
+        scope (str): The scope of the user story.
+        title (str): The title of the user story.
+        acceptance_criteria (str): The acceptance criteria of the user story.
 
     Returns:
         None
     """
 
-    # Construct the chat messages for the API prompt
+    # Define the chat-based input prompt for the OpenAI API
     messages = [
         {
             "role": "system",
-            "content": "You are a helpful assistant that generates user stories based on the given information",
+            "content": "You are an experienced product owner with experience that generates clear and relevant user stories based on the provided information for machine learning domain.",
         },
         {
             "role": "user",
-            "content": f"Generate the user story with the Title, Description and Acceptance Criteria using the following information \n "
-            f"scope: As a {persona}, I want to {scope}, sample title:{title}, sample acceptance criteria: {acceptance_criteria}. ",
+            "content": (
+                f"Generate a detailed user story including Title, Description, "
+                f"and Acceptance Criteria using the following information:\n"
+                f"Persona: {persona}\n"
+                f"Scope: {scope}\n"
+                f"Title: {title}\n"
+                f"Acceptance Criteria: {acceptance_criteria}"
+            ),
         },
     ]
 
@@ -40,19 +45,16 @@ def generate_user_story(
     res_box = st.empty()
     report = []
 
-    # Call the OpenAI API to generate the user story in a chat-based format
-    for resp in openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",  # Using GPT-3's Davinci engine
+    # Call the OpenAI API to generate the user story using the GPT-4 model
+    for response in openai.ChatCompletion.create(
+        model="gpt-4",
         messages=messages,
         stream=True,
-        temperature=0.2,
-        presence_penalty=-1.5,
+        temperature=0.5,  # Slightly increased to allow more creative output
+        presence_penalty=0.0,  # Neutral presence_penalty to avoid redundancy
     ):
-        # join method to concatenate the elements of the list
-        # into a single string,
-        # then strip out any empty strings
-        if "content" in resp.choices[0].delta:
-            report.append(resp.choices[0].delta.content)
+        # Check if the content is in the response and update the output
+        if "content" in response.choices[0].delta:
+            report.append(response.choices[0].delta.content)
             result = "".join(report).strip()
-            # result = result.replace("\n", "")
             res_box.markdown(f"*{result}*")

@@ -1,19 +1,30 @@
-# Get the current date and time in the format YYYYMMDDHHMMSS
+#!/bin/bash
+
+# Get the current date and time in the format YYYYMMDDHHMMSS.
+# This timestamp will be used to uniquely tag the Docker image.
 dte=$(date +'%Y%m%d%H%M%S')
 
-# Set the container registry image name with the current date and time variable
-CONTAINER_REGISTRY_IMAGE=us-east1-docker.pkg.dev/inspired-skill-371914/ar-personal-streamlit-apps/story-craft:$dte
+# Define the container registry image name.
+# The image will be tagged with the current timestamp to ensure uniqueness.
+CONTAINER_REGISTRY_IMAGE="us-east1-docker.pkg.dev/inspired-skill-371914/ar-personal-streamlit-apps/story-craft:$dte"
 
-# Build a Docker image using the Dockerfile in the current directory, tag it with the registry image name and push it to the container registry
-docker build -t $CONTAINER_REGISTRY_IMAGE -f Dockerfile .
-docker push $CONTAINER_REGISTRY_IMAGE
+# Build the Docker image using the Dockerfile in the current directory.
+# The image is tagged with the registry image name that includes the timestamp.
+docker build -t "$CONTAINER_REGISTRY_IMAGE" -f Dockerfile .
 
-# Remove the local Docker image to free up disk space
-docker rmi $CONTAINER_REGISTRY_IMAGE
+# Push the tagged Docker image to the specified Google Container Registry.
+# This makes the image available for deployment.
+docker push "$CONTAINER_REGISTRY_IMAGE"
 
-# Deploy the image to Google Cloud Run with the specified configuration
+# Remove the local Docker image to free up disk space.
+# This is important in CI/CD pipelines or local development environments with limited storage.
+docker rmi "$CONTAINER_REGISTRY_IMAGE"
+
+# Deploy the Docker image to Google Cloud Run.
+# The service is deployed to the specified region with the managed platform.
+# The --allow-unauthenticated flag allows the service to be publicly accessible.
 gcloud run deploy cr-personal-streamlit-na-story-craft \
   --allow-unauthenticated \
-  --image=$CONTAINER_REGISTRY_IMAGE \
+  --image="$CONTAINER_REGISTRY_IMAGE" \
   --region=us-east1 \
   --platform=managed
